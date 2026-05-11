@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15 Pertanyaan Untuk Ceriyah 💕</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+      min-height: 100vh; padding: 20px; color: #333;
+    }
+    .container {
+      max-width: 700px; margin: 0 auto; background: rgba(255,255,255,0.95);
+      padding: 30px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    h1 { text-align: center; color: #d63384; margin-bottom: 10px; font-size: 28px; }
+    .subtitle { text-align: center; color: #6c757d; margin-bottom: 30px; font-style: italic; }
+    .progress { background: #f8d7da; height: 8px; border-radius: 10px; margin-bottom: 25px; overflow: hidden; }
+    .progress-bar { background: #d63384; height: 100%; width: 0%; transition: 0.3s; }
+    .halaman { display: none; }
+    .halaman.aktif { display: block; animation: fadeIn 0.5s; }
+    .soal { display: none; }
+    .soal.aktif { display: block; }
+    .soal h3 { color: #d63384; margin-bottom: 15px; font-size: 18px; line-height: 1.4; }
+    input, textarea {
+      width: 100%; padding: 15px; border: 2px solid #f8d7da;
+      border-radius: 12px; font-size: 16px; font-family: 'Georgia', serif;
+      margin-bottom: 20px;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    input:focus, textarea:focus { outline: none; border-color: #d63384; }
+    .btn {
+      background: #d63384; color: white; border: none; padding: 12px 25px;
+      border-radius: 25px; font-size: 16px; cursor: pointer; margin: 5px;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #b02a5b; transform: translateY(-2px); }
+    .btn-back { background: #6c757d; }
+    .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+    .jawaban-list { text-align: left; margin-top: 20px; }
+    .jawaban-item { background: #fff5f7; padding: 15px; margin: 10px 0; border-radius: 10px; border-left: 4px solid #d63384; }
+    .info-user { background: #d63384; color: white; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+    @keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
+    @keyframes hati { 0%{transform: scale(1);} 50%{transform: scale(1.3);} 100%{transform: scale(1);} }
+    .love { animation: hati 1.5s infinite; display: inline-block; }
+    label { display: block; color: #d63384; font-weight: bold; margin-bottom: 8px; }
+    .loading { display: none; text-align: center; color: #d63384; margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HALAMAN 1: LOGIN -->
+    <div id="login" class="halaman aktif">
+      <h1>Hai Sayang <span class="love">💕</span></h1>
+      <p class="subtitle">Sebelum mulai, kenalan dulu dong...</p>
+      
+      <label>Nama lengkap kamu:</label>
+      <input type="text" id="nama" placeholder="Contoh: Ceriyah Putri">
+      
+      <label>Tanggal lahir kamu:</label>
+      <input type="date" id="tglLahir">
+      
+      <button class="btn" onclick="mulaiKuis()">Mulai Kuis 15 Pertanyaan</button>
+    </div>
+
+    <!-- HALAMAN 2: KUIS -->
+    <div id="kuis" class="halaman">
+      <div class="info-user" id="infoUser"></div>
+      <h1>15 Pertanyaan Untuk Kamu <span class="love">💕</span></h1>
+      <p class="subtitle">Jawab jujur ya sayang... Aku mau tau isi hati kamu</p>
+      <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+      
+      <form id="formKuis">
+        <div class="soal aktif" data-no="1">
+          <h3>1. Kapan pertama kali kamu sadar kalo kamu suka sama aku?</h3>
+          <textarea name="soal1" placeholder="Ceritain momennya sayang..."></textarea>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="2">
+          <h3>2. Apa hal kecil dari aku yang selalu bikin kamu senyum sendiri?</h3>
+          <textarea name="soal2" placeholder="Yang bikin kamu salting juga boleh..."></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="3">
+          <h3>3. Kalau kangen, kamu biasanya ngapain biar kerasa deket sama aku?</h3>
+          <textarea name="soal3" placeholder="Lihat foto aku? Dengerin voice note?"></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="4">
+          <h3>4. Dari semua chat kita, mana yang paling kamu simpen di hati?</h3>
+          <textarea name="soal4" placeholder="Screenshot dalam hati yaa..."></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="5">
+          <h3>5. Apa yang kamu rasain pas pertama kali aku bilang sayang?</h3>
+          <textarea name="soal5" placeholder="Jantung deg-degan? Senyum-senyum?"></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="6">
+          <h3>6. Kalau kita lagi berantem, apa yang bikin kamu tetep pengen balik ke aku?</h3>
+          <textarea name="soal6" placeholder="Jujur aja sayang..."></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="7">
+          <h3>7. Coba deskripsiin aku pake 3 kata aja. Terus jelasin kenapa kata itu.</h3>
+          <textarea name="soal7" placeholder="Contoh: Bucin, karena..."></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="8">
+          <h3>8. Apa impian kamu tentang kita 5 tahun lagi?</h3>
+          <textarea name="soal8" placeholder="Aku mau denger versi kamu..."></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="9">
+          <h3>9. Hal apa dari aku yang bikin kamu ngerasa paling dicintai?</h3>
+          <textarea name="soal9" placeholder="Perhatian kecil atau yang gede?"></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="10">
+          <h3>10. Kalau kamu bisa ulang satu momen sama aku, momen apa yang kamu pilih?</h3>
+          <textarea name="soal10" placeholder="Kenapa momen itu spesial banget?"></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="11">
+          <h3>11. Apa ketakutan terbesar kamu dalam hubungan kita?</h3>
+          <textarea name="soal11" placeholder="Kita hadapi bareng-bareng ya..."></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="12">
+          <h3>12. Lagu apa yang paling ngingetin kamu sama aku? Kenapa?</h3>
+          <textarea name="soal12" placeholder="Spill judulnya dong..."></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="13">
+          <h3>13. Kalau aku lagi sedih, kamu bakal ngapain buat nenangin aku?</h3>
+          <textarea name="soal13" placeholder="Peluk virtual juga boleh..."></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="14">
+          <h3>14. Apa janji kamu buat aku dari hati yang paling dalam?</h3>
+          <textarea name="soal14" placeholder="Yang gak akan kamu ingkarin..."></textarea>
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" onclick="nextSoal()">Lanjut</button>
+        </div>
+
+        <div class="soal" data-no="15">
+          <h3>15. Terakhir... kamu sayang aku seberapa?</h3>
+          <textarea name="soal15" placeholder="Gambarin pake kata-kata ya sayang 💕"></textarea>
+          <input type="hidden" name="nama" id="formNama">
+          <input type="hidden" name="tanggal_lahir" id="formTgl">
+          <button type="button" class="btn btn-back" onclick="prevSoal()">Kembali</button>
+          <button type="button" class="btn" id="btnSelesai" onclick="selesai()">Selesai & Kirim ke Agista</button>
+          <div class="loading" id="loading">Lagi ngirim ke Agista... 💌</div>
+        </div>
+      </form>
+    </div>
+
+    <!-- HALAMAN 3: HASIL -->
+    <div id="hasil" class="halaman">
+      <h2>Udah kekirim ke Agista sayang <span class="love">🥺💕</span></h2>
+      <div class="info-user" id="infoUserHasil"></div>
+      <p>Makasih udah jawab jujur. Agista pasti nangis baca ini 😭</p>
+      <div class="jawaban-list" id="jawabanList"></div>
+      <p style="margin-top:30px; font-style:italic;">Coba chat Agista sekarang: "Udah aku isi sayang" 💕</p>
+    </div>
+  </div>
+
+  <script>
+    let noSoal = 1;
+    const totalSoal = 15;
+    let dataUser = {};
+    const FORMSPREE_URL = "https://formspree.io/f/xdabygeb";
+
+    function formatTanggal(tgl) {
+      const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+      const d = new Date(tgl);
+      return `${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function mulaiKuis() {
+      const nama = document.getElementById('nama').value.trim();
+      const tgl = document.getElementById('tglLahir').value;
+      if(!nama || !tgl) { alert('Isi nama sama tanggal lahir dulu ya sayang 🥺'); return; }
+      
+      dataUser = { nama, tglLahir: formatTanggal(tgl) };
+      document.getElementById('infoUser').innerHTML = `💕 ${dataUser.nama} | ${dataUser.tglLahir} 💕`;
+      document.getElementById('formNama').value = dataUser.nama;
+      document.getElementById('formTgl').value = dataUser.tglLahir;
+      
+      document.getElementById('login').classList.remove('aktif');
+      document.getElementById('kuis').classList.add('aktif');
+      updateProgress();
+    }
+
+    function updateProgress() {
+      document.getElementById('progressBar').style.width = (noSoal/totalSoal*100) + '%';
+    }
+
+    function nextSoal() {
+      const soal = document.querySelector(`.soal[data-no="${noSoal}"]`);
+      const isi = soal.querySelector('textarea').value.trim();
+      if(!isi) { alert('Isi dulu ya sayang 🥺'); return; }
+      soal.classList.remove('aktif');
+      noSoal++;
+      document.querySelector(`.soal[data-no="${noSoal}"]`).classList.add('aktif');
+      updateProgress();
+    }
+
+    function prevSoal() {
+      document.querySelector(`.soal[data-no="${noSoal}"]`).classList.remove('aktif');
+      noSoal--;
+      document.querySelector(`.soal[data-no="${noSoal}"]`).classList.add('aktif');
+      updateProgress();
+    }
+
+    async function selesai() {
+      const soal = document.querySelector(`.soal[data-no="${noSoal}"]`);
+      const isi = soal.querySelector('textarea').value.trim();
+      if(!isi) { alert('Isi dulu yang terakhir ya sayang 🥺'); return; }
+      
+      const btn = document.getElementById('btnSelesai');
+      const loading = document.getElementById('loading');
+      btn.disabled = true;
+      loading.style.display = 'block';
+      
+      const formData = new FormData(document.getElementById('formKuis'));
+      
+      try {
+        const response = await fetch(FORMSPREE_URL, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        
+        if (response.ok) {
+          tampilHasil();
+        } else {
+          alert('Duh gagal ngirim 😭 Coba lagi ya sayang');
+          btn.disabled = false;
+          loading.style.display = 'none';
+        }
+      } catch (error) {
+        alert('Koneksi error 😭 Cek internet kamu ya');
+        btn.disabled = false;
+        loading.style.display = 'none';
+      }
+    }
+
+    function tampilHasil() {
+      const formData = new FormData(document.getElementById('formKuis'));
+      document.getElementById('infoUserHasil').innerHTML = `💕 ${dataUser.nama} | ${dataUser.tglLahir} 💕`;
+      let html = '';
+      for(let i = 1; i <= 15; i++) {
+        const pertanyaan = document.querySelector(`.soal[data-no="${i}"] h3`).innerText;
+        const jawaban = formData.get(`soal${i}`);
+        html += `<div class="jawaban-item"><b>${pertanyaan}</b><br>${jawaban}</div>`;
+      }
+      document.getElementById('jawabanList').innerHTML = html;
+      document.getElementById('kuis').classList.remove('aktif');
+      document.getElementById('hasil').classList.add('aktif');
+    }
+  </script>
+</body>
+</html>
